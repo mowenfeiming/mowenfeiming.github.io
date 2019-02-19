@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0"><link rel="manifest" href="/manifest.json">
+  <!-- hexo-inject:begin --><script src='https://unpkg.com/echarts@3.3.2/dist/echarts.min.js'></script><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="XrWUkCXuOw4raLKgOPhWj_PeKoz9A-uDf-MRne2UmeE">
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用ECharts来画图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Hexo博客中使用ECharts来画图">
+<meta property="og:url" content="https://mowenfeiming.github.io/post/writing/hexo/embed-echarts-in-hexo/index.html">
+<meta property="og:site_name" content="非名榭">
+<meta property="og:description" content="使用ECharts来画图">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-06T01:18:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Hexo博客中使用ECharts来画图">
+<meta name="twitter:description" content="使用ECharts来画图">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="非名榭" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://mowenfeiming.github.io/post/writing/hexo/embed-echarts-in-hexo/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>在Hexo博客中使用ECharts来画图 | 非名榭</title>
+  
+
+
+
+
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-119838231-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-119838231-4');
+  </script>
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">非名榭</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">墨问非名的Hexo博客</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-sitemap">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>站点地图</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-commonweal">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/404/" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>公益 404</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mowenfeiming.github.io/post/writing/hexo/embed-echarts-in-hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="墨问非名">
+      <meta itemprop="description" content="墨问非名的Hexo博客">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="非名榭">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在Hexo博客中使用ECharts来画图
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-05 21:18:02" itemprop="dateCreated datePublished" datetime="2018-07-05T21:18:02-04:00">2018-07-05</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/writing/" itemprop="url" rel="index"><span itemprop="name">Writing</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/writing/hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/post/writing/hexo/embed-echarts-in-hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/post/writing/hexo/embed-echarts-in-hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">36k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1:01</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.2.1/css/hint.min.css"><h2 id="使用ECharts来画图"><a href="#使用ECharts来画图" class="headerlink" title="使用ECharts来画图"></a>使用ECharts来画图</h2><a id="more"></a>
+<p>图像：</p>
+<div id="echarts3978" style="width: 85%;height: 400px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts3978'));
+        // 指定图表的配置项和数据
+        var option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data:['利润', '支出', '收入']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    yAxis : [
+        {
+            type : 'category',
+            axisTick : {show: false},
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    series : [
+        {
+            name:'利润',
+            type:'bar',
+            itemStyle : {
+                normal: {
+                    label: {show: true, position: 'inside'}
+                }
+            },
+            data:[200, 170, 240, 244, 200, 220, 210]
+        },
+        {
+            name:'收入',
+            type:'bar',
+            stack: '总量',
+            itemStyle: {
+                normal: {
+                    label : {show: true}
+                }
+            },
+            data:[320, 302, 341, 374, 390, 450, 420]
+        },
+        {
+            name:'支出',
+            type:'bar',
+            stack: '总量',
+            itemStyle: {normal: {
+                label : {show: true, position: 'left'}
+            }},
+            data:[-120, -132, -101, -134, -190, -230, -210]
+        }
+    ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+<p>源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#123;% echarts <span class="number">400</span> <span class="string">'85%'</span> %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    tooltip : &#123;</span><br><span class="line">        trigger: <span class="string">'axis'</span>,</span><br><span class="line">        axisPointer : &#123;            <span class="comment">// 坐标轴指示器，坐标轴触发有效</span></span><br><span class="line">            type : <span class="string">'shadow'</span>        <span class="comment">// 默认为直线，可选为：'line' | 'shadow'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        data:[<span class="string">'利润'</span>, <span class="string">'支出'</span>, <span class="string">'收入'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    grid: &#123;</span><br><span class="line">        left: <span class="string">'3%'</span>,</span><br><span class="line">        right: <span class="string">'4%'</span>,</span><br><span class="line">        bottom: <span class="string">'3%'</span>,</span><br><span class="line">        containLabel: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    xAxis : [</span><br><span class="line">        &#123;</span><br><span class="line">            type : <span class="string">'value'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    yAxis : [</span><br><span class="line">        &#123;</span><br><span class="line">            type : <span class="string">'category'</span>,</span><br><span class="line">            axisTick : &#123;<span class="attr">show</span>: <span class="literal">false</span>&#125;,</span><br><span class="line">            data : [<span class="string">'周一'</span>,<span class="string">'周二'</span>,<span class="string">'周三'</span>,<span class="string">'周四'</span>,<span class="string">'周五'</span>,<span class="string">'周六'</span>,<span class="string">'周日'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    series : [</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'利润'</span>,</span><br><span class="line">            type:<span class="string">'bar'</span>,</span><br><span class="line">            itemStyle : &#123;</span><br><span class="line">                normal: &#123;</span><br><span class="line">                    label: &#123;<span class="attr">show</span>: <span class="literal">true</span>, <span class="attr">position</span>: <span class="string">'inside'</span>&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            data:[<span class="number">200</span>, <span class="number">170</span>, <span class="number">240</span>, <span class="number">244</span>, <span class="number">200</span>, <span class="number">220</span>, <span class="number">210</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'收入'</span>,</span><br><span class="line">            type:<span class="string">'bar'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            itemStyle: &#123;</span><br><span class="line">                normal: &#123;</span><br><span class="line">                    label : &#123;<span class="attr">show</span>: <span class="literal">true</span>&#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            data:[<span class="number">320</span>, <span class="number">302</span>, <span class="number">341</span>, <span class="number">374</span>, <span class="number">390</span>, <span class="number">450</span>, <span class="number">420</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'支出'</span>,</span><br><span class="line">            type:<span class="string">'bar'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            itemStyle: &#123;<span class="attr">normal</span>: &#123;</span><br><span class="line">                label : &#123;<span class="attr">show</span>: <span class="literal">true</span>, <span class="attr">position</span>: <span class="string">'left'</span>&#125;</span><br><span class="line">            &#125;&#125;,</span><br><span class="line">            data:[<span class="number">-120</span>, <span class="number">-132</span>, <span class="number">-101</span>, <span class="number">-134</span>, <span class="number">-190</span>, <span class="number">-230</span>, <span class="number">-210</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
+<p>图像：</p>
+<div id="echarts9272" style="width: 85%;height: 800px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts9272'));
+        // 指定图表的配置项和数据
+        var option = {
+    title: {
+        text: '天气情况统计',
+        subtext: '虚构数据',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        // orient: 'vertical',
+        // top: 'middle',
+        bottom: 10,
+        left: 'center',
+        data: ['西凉', '益州','兖州','荆州']
+    },
+    series: [
+        {
+            name:'天气数据',
+            type: 'pie',
+            radius : '75%',
+            center: ['50%', '50%'],
+            selectedMode: 'single',
+            data:[
+                {value:535, name: '荆州'},
+                {value:510, name: '兖州'},
+                {value:634, name: '益州'},
+                {value:735, name: '西凉'}
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+<p>源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&#123;% echarts <span class="number">800</span> <span class="string">'85%'</span> %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: <span class="string">'天气情况统计'</span>,</span><br><span class="line">        subtext: <span class="string">'虚构数据'</span>,</span><br><span class="line">        left: <span class="string">'center'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: <span class="string">'item'</span>,</span><br><span class="line">        formatter: <span class="string">"&#123;a&#125; &lt;br/&gt;&#123;b&#125; : &#123;c&#125; (&#123;d&#125;%)"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        <span class="comment">// orient: 'vertical',</span></span><br><span class="line">        <span class="comment">// top: 'middle',</span></span><br><span class="line">        bottom: <span class="number">10</span>,</span><br><span class="line">        left: <span class="string">'center'</span>,</span><br><span class="line">        data: [<span class="string">'西凉'</span>, <span class="string">'益州'</span>,<span class="string">'兖州'</span>,<span class="string">'荆州'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'天气数据'</span>,</span><br><span class="line">            type: <span class="string">'pie'</span>,</span><br><span class="line">            radius : <span class="string">'75%'</span>,</span><br><span class="line">            center: [<span class="string">'50%'</span>, <span class="string">'50%'</span>],</span><br><span class="line">            selectedMode: <span class="string">'single'</span>,</span><br><span class="line">            data:[</span><br><span class="line">                &#123;<span class="attr">value</span>:<span class="number">535</span>, <span class="attr">name</span>: <span class="string">'荆州'</span>&#125;,</span><br><span class="line">                &#123;<span class="attr">value</span>:<span class="number">510</span>, <span class="attr">name</span>: <span class="string">'兖州'</span>&#125;,</span><br><span class="line">                &#123;<span class="attr">value</span>:<span class="number">634</span>, <span class="attr">name</span>: <span class="string">'益州'</span>&#125;,</span><br><span class="line">                &#123;<span class="attr">value</span>:<span class="number">735</span>, <span class="attr">name</span>: <span class="string">'西凉'</span>&#125;</span><br><span class="line">            ],</span><br><span class="line">            itemStyle: &#123;</span><br><span class="line">                emphasis: &#123;</span><br><span class="line">                    shadowBlur: <span class="number">10</span>,</span><br><span class="line">                    shadowOffsetX: <span class="number">0</span>,</span><br><span class="line">                    shadowColor: <span class="string">'rgba(0, 0, 0, 0.5)'</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
+<p>图像：</p>
+<div id="echarts481" style="width: 85%;height: 800px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts481'));
+        // 指定图表的配置项和数据
+        var option = {
+    title : {
+        text: '男性女性身高体重分布',
+        subtext: '抽样调查来自: Heinz  2003'
+    },
+    grid: {
+        left: '3%',
+        right: '7%',
+        bottom: '3%',
+        containLabel: true
+    },
+    tooltip : {
+        // trigger: 'axis',
+        showDelay : 0,
+        formatter : function (params) {
+            if (params.value.length > 1) {
+                return params.seriesName + ' :<br/>'
+                + params.value[0] + 'cm '
+                + params.value[1] + 'kg ';
+            }
+            else {
+                return params.seriesName + ' :<br/>'
+                + params.name + ' : '
+                + params.value + 'kg ';
+            }
+        },
+        axisPointer:{
+            show: true,
+            type : 'cross',
+            lineStyle: {
+                type : 'dashed',
+                width : 1
+            }
+        }
+    },
+    toolbox: {
+        feature: {
+            dataZoom: {},
+            brush: {
+                type: ['rect', 'polygon', 'clear']
+            }
+        }
+    },
+    brush: {
+    },
+    legend: {
+        data: ['女性','男性'],
+        left: 'center'
+    },
+    xAxis : [
+        {
+            type : 'value',
+            scale:true,
+            axisLabel : {
+                formatter: '{value} cm'
+            },
+            splitLine: {
+                show: false
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            scale:true,
+            axisLabel : {
+                formatter: '{value} kg'
+            },
+            splitLine: {
+                show: false
+            }
+        }
+    ],
+    series : [
+        {
+            name:'女性',
+            type:'scatter',
+            data: [[161.2, 51.6], [167.5, 59.0], [159.5, 49.2], [157.0, 63.0], [155.8, 53.6],
+                [170.0, 59.0], [159.1, 47.6], [166.0, 69.8], [176.2, 66.8], [160.2, 75.2],
+                [172.5, 55.2], [170.9, 54.2], [172.9, 62.5], [153.4, 42.0], [160.0, 50.0],
+                [147.2, 49.8], [168.2, 49.2], [175.0, 73.2], [157.0, 47.8], [167.6, 68.8],
+                [159.5, 50.6], [175.0, 82.5], [166.8, 57.2], [176.5, 87.8], [170.2, 72.8],
+                [174.0, 54.5], [173.0, 59.8], [179.9, 67.3], [170.5, 67.8], [160.0, 47.0],
+                [154.4, 46.2], [162.0, 55.0], [176.5, 83.0], [160.0, 54.4], [152.0, 45.8],
+                [162.1, 53.6], [170.0, 73.2], [160.2, 52.1], [161.3, 67.9], [166.4, 56.6],
+                [168.9, 62.3], [163.8, 58.5], [167.6, 54.5], [160.0, 50.2], [161.3, 60.3],
+                [167.6, 58.3], [165.1, 56.2], [160.0, 50.2], [170.0, 72.9], [157.5, 59.8],
+                [167.6, 61.0], [160.7, 69.1], [163.2, 55.9], [152.4, 46.5], [157.5, 54.3],
+                [168.3, 54.8], [180.3, 60.7], [165.5, 60.0], [165.0, 62.0], [164.5, 60.3],
+                [156.0, 52.7], [160.0, 74.3], [163.0, 62.0], [165.7, 73.1], [161.0, 80.0],
+                [162.0, 54.7], [166.0, 53.2], [174.0, 75.7], [172.7, 61.1], [167.6, 55.7],
+                [151.1, 48.7], [164.5, 52.3], [163.5, 50.0], [152.0, 59.3], [169.0, 62.5],
+                [164.0, 55.7], [161.2, 54.8], [155.0, 45.9], [170.0, 70.6], [176.2, 67.2],
+                [170.0, 69.4], [162.5, 58.2], [170.3, 64.8], [164.1, 71.6], [169.5, 52.8],
+                [163.2, 59.8], [154.5, 49.0], [159.8, 50.0], [173.2, 69.2], [170.0, 55.9],
+                [161.4, 63.4], [169.0, 58.2], [166.2, 58.6], [159.4, 45.7], [162.5, 52.2],
+                [159.0, 48.6], [162.8, 57.8], [159.0, 55.6], [179.8, 66.8], [162.9, 59.4],
+                [161.0, 53.6], [151.1, 73.2], [168.2, 53.4], [168.9, 69.0], [173.2, 58.4],
+                [171.8, 56.2], [178.0, 70.6], [164.3, 59.8], [163.0, 72.0], [168.5, 65.2],
+                [166.8, 56.6], [172.7, 105.2], [163.5, 51.8], [169.4, 63.4], [167.8, 59.0],
+                [159.5, 47.6], [167.6, 63.0], [161.2, 55.2], [160.0, 45.0], [163.2, 54.0],
+                [162.2, 50.2], [161.3, 60.2], [149.5, 44.8], [157.5, 58.8], [163.2, 56.4],
+                [172.7, 62.0], [155.0, 49.2], [156.5, 67.2], [164.0, 53.8], [160.9, 54.4],
+                [162.8, 58.0], [167.0, 59.8], [160.0, 54.8], [160.0, 43.2], [168.9, 60.5],
+                [158.2, 46.4], [156.0, 64.4], [160.0, 48.8], [167.1, 62.2], [158.0, 55.5],
+                [167.6, 57.8], [156.0, 54.6], [162.1, 59.2], [173.4, 52.7], [159.8, 53.2],
+                [170.5, 64.5], [159.2, 51.8], [157.5, 56.0], [161.3, 63.6], [162.6, 63.2],
+                [160.0, 59.5], [168.9, 56.8], [165.1, 64.1], [162.6, 50.0], [165.1, 72.3],
+                [166.4, 55.0], [160.0, 55.9], [152.4, 60.4], [170.2, 69.1], [162.6, 84.5],
+                [170.2, 55.9], [158.8, 55.5], [172.7, 69.5], [167.6, 76.4], [162.6, 61.4],
+                [167.6, 65.9], [156.2, 58.6], [175.2, 66.8], [172.1, 56.6], [162.6, 58.6],
+                [160.0, 55.9], [165.1, 59.1], [182.9, 81.8], [166.4, 70.7], [165.1, 56.8],
+                [177.8, 60.0], [165.1, 58.2], [175.3, 72.7], [154.9, 54.1], [158.8, 49.1],
+                [172.7, 75.9], [168.9, 55.0], [161.3, 57.3], [167.6, 55.0], [165.1, 65.5],
+                [175.3, 65.5], [157.5, 48.6], [163.8, 58.6], [167.6, 63.6], [165.1, 55.2],
+                [165.1, 62.7], [168.9, 56.6], [162.6, 53.9], [164.5, 63.2], [176.5, 73.6],
+                [168.9, 62.0], [175.3, 63.6], [159.4, 53.2], [160.0, 53.4], [170.2, 55.0],
+                [162.6, 70.5], [167.6, 54.5], [162.6, 54.5], [160.7, 55.9], [160.0, 59.0],
+                [157.5, 63.6], [162.6, 54.5], [152.4, 47.3], [170.2, 67.7], [165.1, 80.9],
+                [172.7, 70.5], [165.1, 60.9], [170.2, 63.6], [170.2, 54.5], [170.2, 59.1],
+                [161.3, 70.5], [167.6, 52.7], [167.6, 62.7], [165.1, 86.3], [162.6, 66.4],
+                [152.4, 67.3], [168.9, 63.0], [170.2, 73.6], [175.2, 62.3], [175.2, 57.7],
+                [160.0, 55.4], [165.1, 104.1], [174.0, 55.5], [170.2, 77.3], [160.0, 80.5],
+                [167.6, 64.5], [167.6, 72.3], [167.6, 61.4], [154.9, 58.2], [162.6, 81.8],
+                [175.3, 63.6], [171.4, 53.4], [157.5, 54.5], [165.1, 53.6], [160.0, 60.0],
+                [174.0, 73.6], [162.6, 61.4], [174.0, 55.5], [162.6, 63.6], [161.3, 60.9],
+                [156.2, 60.0], [149.9, 46.8], [169.5, 57.3], [160.0, 64.1], [175.3, 63.6],
+                [169.5, 67.3], [160.0, 75.5], [172.7, 68.2], [162.6, 61.4], [157.5, 76.8],
+                [176.5, 71.8], [164.4, 55.5], [160.7, 48.6], [174.0, 66.4], [163.8, 67.3]
+            ],
+            markArea: {
+                silent: true,
+                itemStyle: {
+                    normal: {
+                        color: 'transparent',
+                        borderWidth: 1,
+                        borderType: 'dashed'
+                    }
+                },
+                data: [[{
+                    name: '女性分布区间',
+                    xAxis: 'min',
+                    yAxis: 'min'
+                }, {
+                    xAxis: 'max',
+                    yAxis: 'max'
+                }]]
+            },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                data : [
+                    {type : 'average', name: '平均值'},
+                    { xAxis: 160 }
+                ]
+            }
+        },
+        {
+            name:'男性',
+            type:'scatter',
+            data: [[174.0, 65.6], [175.3, 71.8], [193.5, 80.7], [186.5, 72.6], [187.2, 78.8],
+                [181.5, 74.8], [184.0, 86.4], [184.5, 78.4], [175.0, 62.0], [184.0, 81.6],
+                [180.0, 76.6], [177.8, 83.6], [192.0, 90.0], [176.0, 74.6], [174.0, 71.0],
+                [184.0, 79.6], [192.7, 93.8], [171.5, 70.0], [173.0, 72.4], [176.0, 85.9],
+                [176.0, 78.8], [180.5, 77.8], [172.7, 66.2], [176.0, 86.4], [173.5, 81.8],
+                [178.0, 89.6], [180.3, 82.8], [180.3, 76.4], [164.5, 63.2], [173.0, 60.9],
+                [183.5, 74.8], [175.5, 70.0], [188.0, 72.4], [189.2, 84.1], [172.8, 69.1],
+                [170.0, 59.5], [182.0, 67.2], [170.0, 61.3], [177.8, 68.6], [184.2, 80.1],
+                [186.7, 87.8], [171.4, 84.7], [172.7, 73.4], [175.3, 72.1], [180.3, 82.6],
+                [182.9, 88.7], [188.0, 84.1], [177.2, 94.1], [172.1, 74.9], [167.0, 59.1],
+                [169.5, 75.6], [174.0, 86.2], [172.7, 75.3], [182.2, 87.1], [164.1, 55.2],
+                [163.0, 57.0], [171.5, 61.4], [184.2, 76.8], [174.0, 86.8], [174.0, 72.2],
+                [177.0, 71.6], [186.0, 84.8], [167.0, 68.2], [171.8, 66.1], [182.0, 72.0],
+                [167.0, 64.6], [177.8, 74.8], [164.5, 70.0], [192.0, 101.6], [175.5, 63.2],
+                [171.2, 79.1], [181.6, 78.9], [167.4, 67.7], [181.1, 66.0], [177.0, 68.2],
+                [174.5, 63.9], [177.5, 72.0], [170.5, 56.8], [182.4, 74.5], [197.1, 90.9],
+                [180.1, 93.0], [175.5, 80.9], [180.6, 72.7], [184.4, 68.0], [175.5, 70.9],
+                [180.6, 72.5], [177.0, 72.5], [177.1, 83.4], [181.6, 75.5], [176.5, 73.0],
+                [175.0, 70.2], [174.0, 73.4], [165.1, 70.5], [177.0, 68.9], [192.0, 102.3],
+                [176.5, 68.4], [169.4, 65.9], [182.1, 75.7], [179.8, 84.5], [175.3, 87.7],
+                [184.9, 86.4], [177.3, 73.2], [167.4, 53.9], [178.1, 72.0], [168.9, 55.5],
+                [157.2, 58.4], [180.3, 83.2], [170.2, 72.7], [177.8, 64.1], [172.7, 72.3],
+                [165.1, 65.0], [186.7, 86.4], [165.1, 65.0], [174.0, 88.6], [175.3, 84.1],
+                [185.4, 66.8], [177.8, 75.5], [180.3, 93.2], [180.3, 82.7], [177.8, 58.0],
+                [177.8, 79.5], [177.8, 78.6], [177.8, 71.8], [177.8, 116.4], [163.8, 72.2],
+                [188.0, 83.6], [198.1, 85.5], [175.3, 90.9], [166.4, 85.9], [190.5, 89.1],
+                [166.4, 75.0], [177.8, 77.7], [179.7, 86.4], [172.7, 90.9], [190.5, 73.6],
+                [185.4, 76.4], [168.9, 69.1], [167.6, 84.5], [175.3, 64.5], [170.2, 69.1],
+                [190.5, 108.6], [177.8, 86.4], [190.5, 80.9], [177.8, 87.7], [184.2, 94.5],
+                [176.5, 80.2], [177.8, 72.0], [180.3, 71.4], [171.4, 72.7], [172.7, 84.1],
+                [172.7, 76.8], [177.8, 63.6], [177.8, 80.9], [182.9, 80.9], [170.2, 85.5],
+                [167.6, 68.6], [175.3, 67.7], [165.1, 66.4], [185.4, 102.3], [181.6, 70.5],
+                [172.7, 95.9], [190.5, 84.1], [179.1, 87.3], [175.3, 71.8], [170.2, 65.9],
+                [193.0, 95.9], [171.4, 91.4], [177.8, 81.8], [177.8, 96.8], [167.6, 69.1],
+                [167.6, 82.7], [180.3, 75.5], [182.9, 79.5], [176.5, 73.6], [186.7, 91.8],
+                [188.0, 84.1], [188.0, 85.9], [177.8, 81.8], [174.0, 82.5], [177.8, 80.5],
+                [171.4, 70.0], [185.4, 81.8], [185.4, 84.1], [188.0, 90.5], [188.0, 91.4],
+                [182.9, 89.1], [176.5, 85.0], [175.3, 69.1], [175.3, 73.6], [188.0, 80.5],
+                [188.0, 82.7], [175.3, 86.4], [170.5, 67.7], [179.1, 92.7], [177.8, 93.6],
+                [175.3, 70.9], [182.9, 75.0], [170.8, 93.2], [188.0, 93.2], [180.3, 77.7],
+                [177.8, 61.4], [185.4, 94.1], [168.9, 75.0], [185.4, 83.6], [180.3, 85.5],
+                [174.0, 73.9], [167.6, 66.8], [182.9, 87.3], [160.0, 72.3], [180.3, 88.6],
+                [167.6, 75.5], [186.7, 101.4], [175.3, 91.1], [175.3, 67.3], [175.9, 77.7],
+                [175.3, 81.8], [179.1, 75.5], [181.6, 84.5], [177.8, 76.6], [182.9, 85.0],
+                [177.8, 102.5], [184.2, 77.3], [179.1, 71.8], [176.5, 87.9], [188.0, 94.3],
+                [174.0, 70.9], [167.6, 64.5], [170.2, 77.3], [167.6, 72.3], [188.0, 87.3],
+                [174.0, 80.0], [176.5, 82.3], [180.3, 73.6], [167.6, 74.1], [188.0, 85.9],
+                [180.3, 73.2], [167.6, 76.3], [183.0, 65.9], [183.0, 90.9], [179.1, 89.1],
+                [170.2, 62.3], [177.8, 82.7], [179.1, 79.1], [190.5, 98.2], [177.8, 84.1],
+                [180.3, 83.2], [180.3, 83.2]
+            ],
+            markArea: {
+                silent: true,
+                itemStyle: {
+                    normal: {
+                        color: 'transparent',
+                        borderWidth: 1,
+                        borderType: 'dashed'
+                    }
+                },
+                data: [[{
+                    name: '男性分布区间',
+                    xAxis: 'min',
+                    yAxis: 'min'
+                }, {
+                    xAxis: 'max',
+                    yAxis: 'max'
+                }]]
+            },
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'solid'
+                    }
+                },
+                data : [
+                    {type : 'average', name: '平均值'},
+                    { xAxis: 170 }
+                ]
+            }
+        }
+    ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+<p>源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br></pre></td><td class="code"><pre><span class="line">&#123;% echarts <span class="number">800</span> <span class="string">'85%'</span> %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title : &#123;</span><br><span class="line">        text: <span class="string">'男性女性身高体重分布'</span>,</span><br><span class="line">        subtext: <span class="string">'抽样调查来自: Heinz  2003'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    grid: &#123;</span><br><span class="line">        left: <span class="string">'3%'</span>,</span><br><span class="line">        right: <span class="string">'7%'</span>,</span><br><span class="line">        bottom: <span class="string">'3%'</span>,</span><br><span class="line">        containLabel: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip : &#123;</span><br><span class="line">        <span class="comment">// trigger: 'axis',</span></span><br><span class="line">        showDelay : <span class="number">0</span>,</span><br><span class="line">        formatter : <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (params.value.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> params.seriesName + <span class="string">' :&lt;br/&gt;'</span></span><br><span class="line">                + params.value[<span class="number">0</span>] + <span class="string">'cm '</span></span><br><span class="line">                + params.value[<span class="number">1</span>] + <span class="string">'kg '</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> params.seriesName + <span class="string">' :&lt;br/&gt;'</span></span><br><span class="line">                + params.name + <span class="string">' : '</span></span><br><span class="line">                + params.value + <span class="string">'kg '</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        axisPointer:&#123;</span><br><span class="line">            show: <span class="literal">true</span>,</span><br><span class="line">            type : <span class="string">'cross'</span>,</span><br><span class="line">            lineStyle: &#123;</span><br><span class="line">                type : <span class="string">'dashed'</span>,</span><br><span class="line">                width : <span class="number">1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        feature: &#123;</span><br><span class="line">            dataZoom: &#123;&#125;,</span><br><span class="line">            brush: &#123;</span><br><span class="line">                type: [<span class="string">'rect'</span>, <span class="string">'polygon'</span>, <span class="string">'clear'</span>]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    brush: &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        data: [<span class="string">'女性'</span>,<span class="string">'男性'</span>],</span><br><span class="line">        left: <span class="string">'center'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    xAxis : [</span><br><span class="line">        &#123;</span><br><span class="line">            type : <span class="string">'value'</span>,</span><br><span class="line">            scale:<span class="literal">true</span>,</span><br><span class="line">            axisLabel : &#123;</span><br><span class="line">                formatter: <span class="string">'&#123;value&#125; cm'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            splitLine: &#123;</span><br><span class="line">                show: <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    yAxis : [</span><br><span class="line">        &#123;</span><br><span class="line">            type : <span class="string">'value'</span>,</span><br><span class="line">            scale:<span class="literal">true</span>,</span><br><span class="line">            axisLabel : &#123;</span><br><span class="line">                formatter: <span class="string">'&#123;value&#125; kg'</span></span><br><span class="line">            &#125;,</span><br><span class="line">            splitLine: &#123;</span><br><span class="line">                show: <span class="literal">false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    series : [</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'女性'</span>,</span><br><span class="line">            type:<span class="string">'scatter'</span>,</span><br><span class="line">            data: [[<span class="number">161.2</span>, <span class="number">51.6</span>], [<span class="number">167.5</span>, <span class="number">59.0</span>], [<span class="number">159.5</span>, <span class="number">49.2</span>], [<span class="number">157.0</span>, <span class="number">63.0</span>], [<span class="number">155.8</span>, <span class="number">53.6</span>],</span><br><span class="line">                [<span class="number">170.0</span>, <span class="number">59.0</span>], [<span class="number">159.1</span>, <span class="number">47.6</span>], [<span class="number">166.0</span>, <span class="number">69.8</span>], [<span class="number">176.2</span>, <span class="number">66.8</span>], [<span class="number">160.2</span>, <span class="number">75.2</span>],</span><br><span class="line">                [<span class="number">172.5</span>, <span class="number">55.2</span>], [<span class="number">170.9</span>, <span class="number">54.2</span>], [<span class="number">172.9</span>, <span class="number">62.5</span>], [<span class="number">153.4</span>, <span class="number">42.0</span>], [<span class="number">160.0</span>, <span class="number">50.0</span>],</span><br><span class="line">                [<span class="number">147.2</span>, <span class="number">49.8</span>], [<span class="number">168.2</span>, <span class="number">49.2</span>], [<span class="number">175.0</span>, <span class="number">73.2</span>], [<span class="number">157.0</span>, <span class="number">47.8</span>], [<span class="number">167.6</span>, <span class="number">68.8</span>],</span><br><span class="line">                [<span class="number">159.5</span>, <span class="number">50.6</span>], [<span class="number">175.0</span>, <span class="number">82.5</span>], [<span class="number">166.8</span>, <span class="number">57.2</span>], [<span class="number">176.5</span>, <span class="number">87.8</span>], [<span class="number">170.2</span>, <span class="number">72.8</span>],</span><br><span class="line">                [<span class="number">174.0</span>, <span class="number">54.5</span>], [<span class="number">173.0</span>, <span class="number">59.8</span>], [<span class="number">179.9</span>, <span class="number">67.3</span>], [<span class="number">170.5</span>, <span class="number">67.8</span>], [<span class="number">160.0</span>, <span class="number">47.0</span>],</span><br><span class="line">                [<span class="number">154.4</span>, <span class="number">46.2</span>], [<span class="number">162.0</span>, <span class="number">55.0</span>], [<span class="number">176.5</span>, <span class="number">83.0</span>], [<span class="number">160.0</span>, <span class="number">54.4</span>], [<span class="number">152.0</span>, <span class="number">45.8</span>],</span><br><span class="line">                [<span class="number">162.1</span>, <span class="number">53.6</span>], [<span class="number">170.0</span>, <span class="number">73.2</span>], [<span class="number">160.2</span>, <span class="number">52.1</span>], [<span class="number">161.3</span>, <span class="number">67.9</span>], [<span class="number">166.4</span>, <span class="number">56.6</span>],</span><br><span class="line">                [<span class="number">168.9</span>, <span class="number">62.3</span>], [<span class="number">163.8</span>, <span class="number">58.5</span>], [<span class="number">167.6</span>, <span class="number">54.5</span>], [<span class="number">160.0</span>, <span class="number">50.2</span>], [<span class="number">161.3</span>, <span class="number">60.3</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">58.3</span>], [<span class="number">165.1</span>, <span class="number">56.2</span>], [<span class="number">160.0</span>, <span class="number">50.2</span>], [<span class="number">170.0</span>, <span class="number">72.9</span>], [<span class="number">157.5</span>, <span class="number">59.8</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">61.0</span>], [<span class="number">160.7</span>, <span class="number">69.1</span>], [<span class="number">163.2</span>, <span class="number">55.9</span>], [<span class="number">152.4</span>, <span class="number">46.5</span>], [<span class="number">157.5</span>, <span class="number">54.3</span>],</span><br><span class="line">                [<span class="number">168.3</span>, <span class="number">54.8</span>], [<span class="number">180.3</span>, <span class="number">60.7</span>], [<span class="number">165.5</span>, <span class="number">60.0</span>], [<span class="number">165.0</span>, <span class="number">62.0</span>], [<span class="number">164.5</span>, <span class="number">60.3</span>],</span><br><span class="line">                [<span class="number">156.0</span>, <span class="number">52.7</span>], [<span class="number">160.0</span>, <span class="number">74.3</span>], [<span class="number">163.0</span>, <span class="number">62.0</span>], [<span class="number">165.7</span>, <span class="number">73.1</span>], [<span class="number">161.0</span>, <span class="number">80.0</span>],</span><br><span class="line">                [<span class="number">162.0</span>, <span class="number">54.7</span>], [<span class="number">166.0</span>, <span class="number">53.2</span>], [<span class="number">174.0</span>, <span class="number">75.7</span>], [<span class="number">172.7</span>, <span class="number">61.1</span>], [<span class="number">167.6</span>, <span class="number">55.7</span>],</span><br><span class="line">                [<span class="number">151.1</span>, <span class="number">48.7</span>], [<span class="number">164.5</span>, <span class="number">52.3</span>], [<span class="number">163.5</span>, <span class="number">50.0</span>], [<span class="number">152.0</span>, <span class="number">59.3</span>], [<span class="number">169.0</span>, <span class="number">62.5</span>],</span><br><span class="line">                [<span class="number">164.0</span>, <span class="number">55.7</span>], [<span class="number">161.2</span>, <span class="number">54.8</span>], [<span class="number">155.0</span>, <span class="number">45.9</span>], [<span class="number">170.0</span>, <span class="number">70.6</span>], [<span class="number">176.2</span>, <span class="number">67.2</span>],</span><br><span class="line">                [<span class="number">170.0</span>, <span class="number">69.4</span>], [<span class="number">162.5</span>, <span class="number">58.2</span>], [<span class="number">170.3</span>, <span class="number">64.8</span>], [<span class="number">164.1</span>, <span class="number">71.6</span>], [<span class="number">169.5</span>, <span class="number">52.8</span>],</span><br><span class="line">                [<span class="number">163.2</span>, <span class="number">59.8</span>], [<span class="number">154.5</span>, <span class="number">49.0</span>], [<span class="number">159.8</span>, <span class="number">50.0</span>], [<span class="number">173.2</span>, <span class="number">69.2</span>], [<span class="number">170.0</span>, <span class="number">55.9</span>],</span><br><span class="line">                [<span class="number">161.4</span>, <span class="number">63.4</span>], [<span class="number">169.0</span>, <span class="number">58.2</span>], [<span class="number">166.2</span>, <span class="number">58.6</span>], [<span class="number">159.4</span>, <span class="number">45.7</span>], [<span class="number">162.5</span>, <span class="number">52.2</span>],</span><br><span class="line">                [<span class="number">159.0</span>, <span class="number">48.6</span>], [<span class="number">162.8</span>, <span class="number">57.8</span>], [<span class="number">159.0</span>, <span class="number">55.6</span>], [<span class="number">179.8</span>, <span class="number">66.8</span>], [<span class="number">162.9</span>, <span class="number">59.4</span>],</span><br><span class="line">                [<span class="number">161.0</span>, <span class="number">53.6</span>], [<span class="number">151.1</span>, <span class="number">73.2</span>], [<span class="number">168.2</span>, <span class="number">53.4</span>], [<span class="number">168.9</span>, <span class="number">69.0</span>], [<span class="number">173.2</span>, <span class="number">58.4</span>],</span><br><span class="line">                [<span class="number">171.8</span>, <span class="number">56.2</span>], [<span class="number">178.0</span>, <span class="number">70.6</span>], [<span class="number">164.3</span>, <span class="number">59.8</span>], [<span class="number">163.0</span>, <span class="number">72.0</span>], [<span class="number">168.5</span>, <span class="number">65.2</span>],</span><br><span class="line">                [<span class="number">166.8</span>, <span class="number">56.6</span>], [<span class="number">172.7</span>, <span class="number">105.2</span>], [<span class="number">163.5</span>, <span class="number">51.8</span>], [<span class="number">169.4</span>, <span class="number">63.4</span>], [<span class="number">167.8</span>, <span class="number">59.0</span>],</span><br><span class="line">                [<span class="number">159.5</span>, <span class="number">47.6</span>], [<span class="number">167.6</span>, <span class="number">63.0</span>], [<span class="number">161.2</span>, <span class="number">55.2</span>], [<span class="number">160.0</span>, <span class="number">45.0</span>], [<span class="number">163.2</span>, <span class="number">54.0</span>],</span><br><span class="line">                [<span class="number">162.2</span>, <span class="number">50.2</span>], [<span class="number">161.3</span>, <span class="number">60.2</span>], [<span class="number">149.5</span>, <span class="number">44.8</span>], [<span class="number">157.5</span>, <span class="number">58.8</span>], [<span class="number">163.2</span>, <span class="number">56.4</span>],</span><br><span class="line">                [<span class="number">172.7</span>, <span class="number">62.0</span>], [<span class="number">155.0</span>, <span class="number">49.2</span>], [<span class="number">156.5</span>, <span class="number">67.2</span>], [<span class="number">164.0</span>, <span class="number">53.8</span>], [<span class="number">160.9</span>, <span class="number">54.4</span>],</span><br><span class="line">                [<span class="number">162.8</span>, <span class="number">58.0</span>], [<span class="number">167.0</span>, <span class="number">59.8</span>], [<span class="number">160.0</span>, <span class="number">54.8</span>], [<span class="number">160.0</span>, <span class="number">43.2</span>], [<span class="number">168.9</span>, <span class="number">60.5</span>],</span><br><span class="line">                [<span class="number">158.2</span>, <span class="number">46.4</span>], [<span class="number">156.0</span>, <span class="number">64.4</span>], [<span class="number">160.0</span>, <span class="number">48.8</span>], [<span class="number">167.1</span>, <span class="number">62.2</span>], [<span class="number">158.0</span>, <span class="number">55.5</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">57.8</span>], [<span class="number">156.0</span>, <span class="number">54.6</span>], [<span class="number">162.1</span>, <span class="number">59.2</span>], [<span class="number">173.4</span>, <span class="number">52.7</span>], [<span class="number">159.8</span>, <span class="number">53.2</span>],</span><br><span class="line">                [<span class="number">170.5</span>, <span class="number">64.5</span>], [<span class="number">159.2</span>, <span class="number">51.8</span>], [<span class="number">157.5</span>, <span class="number">56.0</span>], [<span class="number">161.3</span>, <span class="number">63.6</span>], [<span class="number">162.6</span>, <span class="number">63.2</span>],</span><br><span class="line">                [<span class="number">160.0</span>, <span class="number">59.5</span>], [<span class="number">168.9</span>, <span class="number">56.8</span>], [<span class="number">165.1</span>, <span class="number">64.1</span>], [<span class="number">162.6</span>, <span class="number">50.0</span>], [<span class="number">165.1</span>, <span class="number">72.3</span>],</span><br><span class="line">                [<span class="number">166.4</span>, <span class="number">55.0</span>], [<span class="number">160.0</span>, <span class="number">55.9</span>], [<span class="number">152.4</span>, <span class="number">60.4</span>], [<span class="number">170.2</span>, <span class="number">69.1</span>], [<span class="number">162.6</span>, <span class="number">84.5</span>],</span><br><span class="line">                [<span class="number">170.2</span>, <span class="number">55.9</span>], [<span class="number">158.8</span>, <span class="number">55.5</span>], [<span class="number">172.7</span>, <span class="number">69.5</span>], [<span class="number">167.6</span>, <span class="number">76.4</span>], [<span class="number">162.6</span>, <span class="number">61.4</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">65.9</span>], [<span class="number">156.2</span>, <span class="number">58.6</span>], [<span class="number">175.2</span>, <span class="number">66.8</span>], [<span class="number">172.1</span>, <span class="number">56.6</span>], [<span class="number">162.6</span>, <span class="number">58.6</span>],</span><br><span class="line">                [<span class="number">160.0</span>, <span class="number">55.9</span>], [<span class="number">165.1</span>, <span class="number">59.1</span>], [<span class="number">182.9</span>, <span class="number">81.8</span>], [<span class="number">166.4</span>, <span class="number">70.7</span>], [<span class="number">165.1</span>, <span class="number">56.8</span>],</span><br><span class="line">                [<span class="number">177.8</span>, <span class="number">60.0</span>], [<span class="number">165.1</span>, <span class="number">58.2</span>], [<span class="number">175.3</span>, <span class="number">72.7</span>], [<span class="number">154.9</span>, <span class="number">54.1</span>], [<span class="number">158.8</span>, <span class="number">49.1</span>],</span><br><span class="line">                [<span class="number">172.7</span>, <span class="number">75.9</span>], [<span class="number">168.9</span>, <span class="number">55.0</span>], [<span class="number">161.3</span>, <span class="number">57.3</span>], [<span class="number">167.6</span>, <span class="number">55.0</span>], [<span class="number">165.1</span>, <span class="number">65.5</span>],</span><br><span class="line">                [<span class="number">175.3</span>, <span class="number">65.5</span>], [<span class="number">157.5</span>, <span class="number">48.6</span>], [<span class="number">163.8</span>, <span class="number">58.6</span>], [<span class="number">167.6</span>, <span class="number">63.6</span>], [<span class="number">165.1</span>, <span class="number">55.2</span>],</span><br><span class="line">                [<span class="number">165.1</span>, <span class="number">62.7</span>], [<span class="number">168.9</span>, <span class="number">56.6</span>], [<span class="number">162.6</span>, <span class="number">53.9</span>], [<span class="number">164.5</span>, <span class="number">63.2</span>], [<span class="number">176.5</span>, <span class="number">73.6</span>],</span><br><span class="line">                [<span class="number">168.9</span>, <span class="number">62.0</span>], [<span class="number">175.3</span>, <span class="number">63.6</span>], [<span class="number">159.4</span>, <span class="number">53.2</span>], [<span class="number">160.0</span>, <span class="number">53.4</span>], [<span class="number">170.2</span>, <span class="number">55.0</span>],</span><br><span class="line">                [<span class="number">162.6</span>, <span class="number">70.5</span>], [<span class="number">167.6</span>, <span class="number">54.5</span>], [<span class="number">162.6</span>, <span class="number">54.5</span>], [<span class="number">160.7</span>, <span class="number">55.9</span>], [<span class="number">160.0</span>, <span class="number">59.0</span>],</span><br><span class="line">                [<span class="number">157.5</span>, <span class="number">63.6</span>], [<span class="number">162.6</span>, <span class="number">54.5</span>], [<span class="number">152.4</span>, <span class="number">47.3</span>], [<span class="number">170.2</span>, <span class="number">67.7</span>], [<span class="number">165.1</span>, <span class="number">80.9</span>],</span><br><span class="line">                [<span class="number">172.7</span>, <span class="number">70.5</span>], [<span class="number">165.1</span>, <span class="number">60.9</span>], [<span class="number">170.2</span>, <span class="number">63.6</span>], [<span class="number">170.2</span>, <span class="number">54.5</span>], [<span class="number">170.2</span>, <span class="number">59.1</span>],</span><br><span class="line">                [<span class="number">161.3</span>, <span class="number">70.5</span>], [<span class="number">167.6</span>, <span class="number">52.7</span>], [<span class="number">167.6</span>, <span class="number">62.7</span>], [<span class="number">165.1</span>, <span class="number">86.3</span>], [<span class="number">162.6</span>, <span class="number">66.4</span>],</span><br><span class="line">                [<span class="number">152.4</span>, <span class="number">67.3</span>], [<span class="number">168.9</span>, <span class="number">63.0</span>], [<span class="number">170.2</span>, <span class="number">73.6</span>], [<span class="number">175.2</span>, <span class="number">62.3</span>], [<span class="number">175.2</span>, <span class="number">57.7</span>],</span><br><span class="line">                [<span class="number">160.0</span>, <span class="number">55.4</span>], [<span class="number">165.1</span>, <span class="number">104.1</span>], [<span class="number">174.0</span>, <span class="number">55.5</span>], [<span class="number">170.2</span>, <span class="number">77.3</span>], [<span class="number">160.0</span>, <span class="number">80.5</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">64.5</span>], [<span class="number">167.6</span>, <span class="number">72.3</span>], [<span class="number">167.6</span>, <span class="number">61.4</span>], [<span class="number">154.9</span>, <span class="number">58.2</span>], [<span class="number">162.6</span>, <span class="number">81.8</span>],</span><br><span class="line">                [<span class="number">175.3</span>, <span class="number">63.6</span>], [<span class="number">171.4</span>, <span class="number">53.4</span>], [<span class="number">157.5</span>, <span class="number">54.5</span>], [<span class="number">165.1</span>, <span class="number">53.6</span>], [<span class="number">160.0</span>, <span class="number">60.0</span>],</span><br><span class="line">                [<span class="number">174.0</span>, <span class="number">73.6</span>], [<span class="number">162.6</span>, <span class="number">61.4</span>], [<span class="number">174.0</span>, <span class="number">55.5</span>], [<span class="number">162.6</span>, <span class="number">63.6</span>], [<span class="number">161.3</span>, <span class="number">60.9</span>],</span><br><span class="line">                [<span class="number">156.2</span>, <span class="number">60.0</span>], [<span class="number">149.9</span>, <span class="number">46.8</span>], [<span class="number">169.5</span>, <span class="number">57.3</span>], [<span class="number">160.0</span>, <span class="number">64.1</span>], [<span class="number">175.3</span>, <span class="number">63.6</span>],</span><br><span class="line">                [<span class="number">169.5</span>, <span class="number">67.3</span>], [<span class="number">160.0</span>, <span class="number">75.5</span>], [<span class="number">172.7</span>, <span class="number">68.2</span>], [<span class="number">162.6</span>, <span class="number">61.4</span>], [<span class="number">157.5</span>, <span class="number">76.8</span>],</span><br><span class="line">                [<span class="number">176.5</span>, <span class="number">71.8</span>], [<span class="number">164.4</span>, <span class="number">55.5</span>], [<span class="number">160.7</span>, <span class="number">48.6</span>], [<span class="number">174.0</span>, <span class="number">66.4</span>], [<span class="number">163.8</span>, <span class="number">67.3</span>]</span><br><span class="line">            ],</span><br><span class="line">            markArea: &#123;</span><br><span class="line">                silent: <span class="literal">true</span>,</span><br><span class="line">                itemStyle: &#123;</span><br><span class="line">                    normal: &#123;</span><br><span class="line">                        color: <span class="string">'transparent'</span>,</span><br><span class="line">                        borderWidth: <span class="number">1</span>,</span><br><span class="line">                        borderType: <span class="string">'dashed'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                data: [[&#123;</span><br><span class="line">                    name: <span class="string">'女性分布区间'</span>,</span><br><span class="line">                    xAxis: <span class="string">'min'</span>,</span><br><span class="line">                    yAxis: <span class="string">'min'</span></span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    xAxis: <span class="string">'max'</span>,</span><br><span class="line">                    yAxis: <span class="string">'max'</span></span><br><span class="line">                &#125;]]</span><br><span class="line">            &#125;,</span><br><span class="line">            markPoint : &#123;</span><br><span class="line">                data : [</span><br><span class="line">                    &#123;<span class="attr">type</span> : <span class="string">'max'</span>, <span class="attr">name</span>: <span class="string">'最大值'</span>&#125;,</span><br><span class="line">                    &#123;<span class="attr">type</span> : <span class="string">'min'</span>, <span class="attr">name</span>: <span class="string">'最小值'</span>&#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            markLine : &#123;</span><br><span class="line">                lineStyle: &#123;</span><br><span class="line">                    normal: &#123;</span><br><span class="line">                        type: <span class="string">'solid'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                data : [</span><br><span class="line">                    &#123;<span class="attr">type</span> : <span class="string">'average'</span>, <span class="attr">name</span>: <span class="string">'平均值'</span>&#125;,</span><br><span class="line">                    &#123; <span class="attr">xAxis</span>: <span class="number">160</span> &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'男性'</span>,</span><br><span class="line">            type:<span class="string">'scatter'</span>,</span><br><span class="line">            data: [[<span class="number">174.0</span>, <span class="number">65.6</span>], [<span class="number">175.3</span>, <span class="number">71.8</span>], [<span class="number">193.5</span>, <span class="number">80.7</span>], [<span class="number">186.5</span>, <span class="number">72.6</span>], [<span class="number">187.2</span>, <span class="number">78.8</span>],</span><br><span class="line">                [<span class="number">181.5</span>, <span class="number">74.8</span>], [<span class="number">184.0</span>, <span class="number">86.4</span>], [<span class="number">184.5</span>, <span class="number">78.4</span>], [<span class="number">175.0</span>, <span class="number">62.0</span>], [<span class="number">184.0</span>, <span class="number">81.6</span>],</span><br><span class="line">                [<span class="number">180.0</span>, <span class="number">76.6</span>], [<span class="number">177.8</span>, <span class="number">83.6</span>], [<span class="number">192.0</span>, <span class="number">90.0</span>], [<span class="number">176.0</span>, <span class="number">74.6</span>], [<span class="number">174.0</span>, <span class="number">71.0</span>],</span><br><span class="line">                [<span class="number">184.0</span>, <span class="number">79.6</span>], [<span class="number">192.7</span>, <span class="number">93.8</span>], [<span class="number">171.5</span>, <span class="number">70.0</span>], [<span class="number">173.0</span>, <span class="number">72.4</span>], [<span class="number">176.0</span>, <span class="number">85.9</span>],</span><br><span class="line">                [<span class="number">176.0</span>, <span class="number">78.8</span>], [<span class="number">180.5</span>, <span class="number">77.8</span>], [<span class="number">172.7</span>, <span class="number">66.2</span>], [<span class="number">176.0</span>, <span class="number">86.4</span>], [<span class="number">173.5</span>, <span class="number">81.8</span>],</span><br><span class="line">                [<span class="number">178.0</span>, <span class="number">89.6</span>], [<span class="number">180.3</span>, <span class="number">82.8</span>], [<span class="number">180.3</span>, <span class="number">76.4</span>], [<span class="number">164.5</span>, <span class="number">63.2</span>], [<span class="number">173.0</span>, <span class="number">60.9</span>],</span><br><span class="line">                [<span class="number">183.5</span>, <span class="number">74.8</span>], [<span class="number">175.5</span>, <span class="number">70.0</span>], [<span class="number">188.0</span>, <span class="number">72.4</span>], [<span class="number">189.2</span>, <span class="number">84.1</span>], [<span class="number">172.8</span>, <span class="number">69.1</span>],</span><br><span class="line">                [<span class="number">170.0</span>, <span class="number">59.5</span>], [<span class="number">182.0</span>, <span class="number">67.2</span>], [<span class="number">170.0</span>, <span class="number">61.3</span>], [<span class="number">177.8</span>, <span class="number">68.6</span>], [<span class="number">184.2</span>, <span class="number">80.1</span>],</span><br><span class="line">                [<span class="number">186.7</span>, <span class="number">87.8</span>], [<span class="number">171.4</span>, <span class="number">84.7</span>], [<span class="number">172.7</span>, <span class="number">73.4</span>], [<span class="number">175.3</span>, <span class="number">72.1</span>], [<span class="number">180.3</span>, <span class="number">82.6</span>],</span><br><span class="line">                [<span class="number">182.9</span>, <span class="number">88.7</span>], [<span class="number">188.0</span>, <span class="number">84.1</span>], [<span class="number">177.2</span>, <span class="number">94.1</span>], [<span class="number">172.1</span>, <span class="number">74.9</span>], [<span class="number">167.0</span>, <span class="number">59.1</span>],</span><br><span class="line">                [<span class="number">169.5</span>, <span class="number">75.6</span>], [<span class="number">174.0</span>, <span class="number">86.2</span>], [<span class="number">172.7</span>, <span class="number">75.3</span>], [<span class="number">182.2</span>, <span class="number">87.1</span>], [<span class="number">164.1</span>, <span class="number">55.2</span>],</span><br><span class="line">                [<span class="number">163.0</span>, <span class="number">57.0</span>], [<span class="number">171.5</span>, <span class="number">61.4</span>], [<span class="number">184.2</span>, <span class="number">76.8</span>], [<span class="number">174.0</span>, <span class="number">86.8</span>], [<span class="number">174.0</span>, <span class="number">72.2</span>],</span><br><span class="line">                [<span class="number">177.0</span>, <span class="number">71.6</span>], [<span class="number">186.0</span>, <span class="number">84.8</span>], [<span class="number">167.0</span>, <span class="number">68.2</span>], [<span class="number">171.8</span>, <span class="number">66.1</span>], [<span class="number">182.0</span>, <span class="number">72.0</span>],</span><br><span class="line">                [<span class="number">167.0</span>, <span class="number">64.6</span>], [<span class="number">177.8</span>, <span class="number">74.8</span>], [<span class="number">164.5</span>, <span class="number">70.0</span>], [<span class="number">192.0</span>, <span class="number">101.6</span>], [<span class="number">175.5</span>, <span class="number">63.2</span>],</span><br><span class="line">                [<span class="number">171.2</span>, <span class="number">79.1</span>], [<span class="number">181.6</span>, <span class="number">78.9</span>], [<span class="number">167.4</span>, <span class="number">67.7</span>], [<span class="number">181.1</span>, <span class="number">66.0</span>], [<span class="number">177.0</span>, <span class="number">68.2</span>],</span><br><span class="line">                [<span class="number">174.5</span>, <span class="number">63.9</span>], [<span class="number">177.5</span>, <span class="number">72.0</span>], [<span class="number">170.5</span>, <span class="number">56.8</span>], [<span class="number">182.4</span>, <span class="number">74.5</span>], [<span class="number">197.1</span>, <span class="number">90.9</span>],</span><br><span class="line">                [<span class="number">180.1</span>, <span class="number">93.0</span>], [<span class="number">175.5</span>, <span class="number">80.9</span>], [<span class="number">180.6</span>, <span class="number">72.7</span>], [<span class="number">184.4</span>, <span class="number">68.0</span>], [<span class="number">175.5</span>, <span class="number">70.9</span>],</span><br><span class="line">                [<span class="number">180.6</span>, <span class="number">72.5</span>], [<span class="number">177.0</span>, <span class="number">72.5</span>], [<span class="number">177.1</span>, <span class="number">83.4</span>], [<span class="number">181.6</span>, <span class="number">75.5</span>], [<span class="number">176.5</span>, <span class="number">73.0</span>],</span><br><span class="line">                [<span class="number">175.0</span>, <span class="number">70.2</span>], [<span class="number">174.0</span>, <span class="number">73.4</span>], [<span class="number">165.1</span>, <span class="number">70.5</span>], [<span class="number">177.0</span>, <span class="number">68.9</span>], [<span class="number">192.0</span>, <span class="number">102.3</span>],</span><br><span class="line">                [<span class="number">176.5</span>, <span class="number">68.4</span>], [<span class="number">169.4</span>, <span class="number">65.9</span>], [<span class="number">182.1</span>, <span class="number">75.7</span>], [<span class="number">179.8</span>, <span class="number">84.5</span>], [<span class="number">175.3</span>, <span class="number">87.7</span>],</span><br><span class="line">                [<span class="number">184.9</span>, <span class="number">86.4</span>], [<span class="number">177.3</span>, <span class="number">73.2</span>], [<span class="number">167.4</span>, <span class="number">53.9</span>], [<span class="number">178.1</span>, <span class="number">72.0</span>], [<span class="number">168.9</span>, <span class="number">55.5</span>],</span><br><span class="line">                [<span class="number">157.2</span>, <span class="number">58.4</span>], [<span class="number">180.3</span>, <span class="number">83.2</span>], [<span class="number">170.2</span>, <span class="number">72.7</span>], [<span class="number">177.8</span>, <span class="number">64.1</span>], [<span class="number">172.7</span>, <span class="number">72.3</span>],</span><br><span class="line">                [<span class="number">165.1</span>, <span class="number">65.0</span>], [<span class="number">186.7</span>, <span class="number">86.4</span>], [<span class="number">165.1</span>, <span class="number">65.0</span>], [<span class="number">174.0</span>, <span class="number">88.6</span>], [<span class="number">175.3</span>, <span class="number">84.1</span>],</span><br><span class="line">                [<span class="number">185.4</span>, <span class="number">66.8</span>], [<span class="number">177.8</span>, <span class="number">75.5</span>], [<span class="number">180.3</span>, <span class="number">93.2</span>], [<span class="number">180.3</span>, <span class="number">82.7</span>], [<span class="number">177.8</span>, <span class="number">58.0</span>],</span><br><span class="line">                [<span class="number">177.8</span>, <span class="number">79.5</span>], [<span class="number">177.8</span>, <span class="number">78.6</span>], [<span class="number">177.8</span>, <span class="number">71.8</span>], [<span class="number">177.8</span>, <span class="number">116.4</span>], [<span class="number">163.8</span>, <span class="number">72.2</span>],</span><br><span class="line">                [<span class="number">188.0</span>, <span class="number">83.6</span>], [<span class="number">198.1</span>, <span class="number">85.5</span>], [<span class="number">175.3</span>, <span class="number">90.9</span>], [<span class="number">166.4</span>, <span class="number">85.9</span>], [<span class="number">190.5</span>, <span class="number">89.1</span>],</span><br><span class="line">                [<span class="number">166.4</span>, <span class="number">75.0</span>], [<span class="number">177.8</span>, <span class="number">77.7</span>], [<span class="number">179.7</span>, <span class="number">86.4</span>], [<span class="number">172.7</span>, <span class="number">90.9</span>], [<span class="number">190.5</span>, <span class="number">73.6</span>],</span><br><span class="line">                [<span class="number">185.4</span>, <span class="number">76.4</span>], [<span class="number">168.9</span>, <span class="number">69.1</span>], [<span class="number">167.6</span>, <span class="number">84.5</span>], [<span class="number">175.3</span>, <span class="number">64.5</span>], [<span class="number">170.2</span>, <span class="number">69.1</span>],</span><br><span class="line">                [<span class="number">190.5</span>, <span class="number">108.6</span>], [<span class="number">177.8</span>, <span class="number">86.4</span>], [<span class="number">190.5</span>, <span class="number">80.9</span>], [<span class="number">177.8</span>, <span class="number">87.7</span>], [<span class="number">184.2</span>, <span class="number">94.5</span>],</span><br><span class="line">                [<span class="number">176.5</span>, <span class="number">80.2</span>], [<span class="number">177.8</span>, <span class="number">72.0</span>], [<span class="number">180.3</span>, <span class="number">71.4</span>], [<span class="number">171.4</span>, <span class="number">72.7</span>], [<span class="number">172.7</span>, <span class="number">84.1</span>],</span><br><span class="line">                [<span class="number">172.7</span>, <span class="number">76.8</span>], [<span class="number">177.8</span>, <span class="number">63.6</span>], [<span class="number">177.8</span>, <span class="number">80.9</span>], [<span class="number">182.9</span>, <span class="number">80.9</span>], [<span class="number">170.2</span>, <span class="number">85.5</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">68.6</span>], [<span class="number">175.3</span>, <span class="number">67.7</span>], [<span class="number">165.1</span>, <span class="number">66.4</span>], [<span class="number">185.4</span>, <span class="number">102.3</span>], [<span class="number">181.6</span>, <span class="number">70.5</span>],</span><br><span class="line">                [<span class="number">172.7</span>, <span class="number">95.9</span>], [<span class="number">190.5</span>, <span class="number">84.1</span>], [<span class="number">179.1</span>, <span class="number">87.3</span>], [<span class="number">175.3</span>, <span class="number">71.8</span>], [<span class="number">170.2</span>, <span class="number">65.9</span>],</span><br><span class="line">                [<span class="number">193.0</span>, <span class="number">95.9</span>], [<span class="number">171.4</span>, <span class="number">91.4</span>], [<span class="number">177.8</span>, <span class="number">81.8</span>], [<span class="number">177.8</span>, <span class="number">96.8</span>], [<span class="number">167.6</span>, <span class="number">69.1</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">82.7</span>], [<span class="number">180.3</span>, <span class="number">75.5</span>], [<span class="number">182.9</span>, <span class="number">79.5</span>], [<span class="number">176.5</span>, <span class="number">73.6</span>], [<span class="number">186.7</span>, <span class="number">91.8</span>],</span><br><span class="line">                [<span class="number">188.0</span>, <span class="number">84.1</span>], [<span class="number">188.0</span>, <span class="number">85.9</span>], [<span class="number">177.8</span>, <span class="number">81.8</span>], [<span class="number">174.0</span>, <span class="number">82.5</span>], [<span class="number">177.8</span>, <span class="number">80.5</span>],</span><br><span class="line">                [<span class="number">171.4</span>, <span class="number">70.0</span>], [<span class="number">185.4</span>, <span class="number">81.8</span>], [<span class="number">185.4</span>, <span class="number">84.1</span>], [<span class="number">188.0</span>, <span class="number">90.5</span>], [<span class="number">188.0</span>, <span class="number">91.4</span>],</span><br><span class="line">                [<span class="number">182.9</span>, <span class="number">89.1</span>], [<span class="number">176.5</span>, <span class="number">85.0</span>], [<span class="number">175.3</span>, <span class="number">69.1</span>], [<span class="number">175.3</span>, <span class="number">73.6</span>], [<span class="number">188.0</span>, <span class="number">80.5</span>],</span><br><span class="line">                [<span class="number">188.0</span>, <span class="number">82.7</span>], [<span class="number">175.3</span>, <span class="number">86.4</span>], [<span class="number">170.5</span>, <span class="number">67.7</span>], [<span class="number">179.1</span>, <span class="number">92.7</span>], [<span class="number">177.8</span>, <span class="number">93.6</span>],</span><br><span class="line">                [<span class="number">175.3</span>, <span class="number">70.9</span>], [<span class="number">182.9</span>, <span class="number">75.0</span>], [<span class="number">170.8</span>, <span class="number">93.2</span>], [<span class="number">188.0</span>, <span class="number">93.2</span>], [<span class="number">180.3</span>, <span class="number">77.7</span>],</span><br><span class="line">                [<span class="number">177.8</span>, <span class="number">61.4</span>], [<span class="number">185.4</span>, <span class="number">94.1</span>], [<span class="number">168.9</span>, <span class="number">75.0</span>], [<span class="number">185.4</span>, <span class="number">83.6</span>], [<span class="number">180.3</span>, <span class="number">85.5</span>],</span><br><span class="line">                [<span class="number">174.0</span>, <span class="number">73.9</span>], [<span class="number">167.6</span>, <span class="number">66.8</span>], [<span class="number">182.9</span>, <span class="number">87.3</span>], [<span class="number">160.0</span>, <span class="number">72.3</span>], [<span class="number">180.3</span>, <span class="number">88.6</span>],</span><br><span class="line">                [<span class="number">167.6</span>, <span class="number">75.5</span>], [<span class="number">186.7</span>, <span class="number">101.4</span>], [<span class="number">175.3</span>, <span class="number">91.1</span>], [<span class="number">175.3</span>, <span class="number">67.3</span>], [<span class="number">175.9</span>, <span class="number">77.7</span>],</span><br><span class="line">                [<span class="number">175.3</span>, <span class="number">81.8</span>], [<span class="number">179.1</span>, <span class="number">75.5</span>], [<span class="number">181.6</span>, <span class="number">84.5</span>], [<span class="number">177.8</span>, <span class="number">76.6</span>], [<span class="number">182.9</span>, <span class="number">85.0</span>],</span><br><span class="line">                [<span class="number">177.8</span>, <span class="number">102.5</span>], [<span class="number">184.2</span>, <span class="number">77.3</span>], [<span class="number">179.1</span>, <span class="number">71.8</span>], [<span class="number">176.5</span>, <span class="number">87.9</span>], [<span class="number">188.0</span>, <span class="number">94.3</span>],</span><br><span class="line">                [<span class="number">174.0</span>, <span class="number">70.9</span>], [<span class="number">167.6</span>, <span class="number">64.5</span>], [<span class="number">170.2</span>, <span class="number">77.3</span>], [<span class="number">167.6</span>, <span class="number">72.3</span>], [<span class="number">188.0</span>, <span class="number">87.3</span>],</span><br><span class="line">                [<span class="number">174.0</span>, <span class="number">80.0</span>], [<span class="number">176.5</span>, <span class="number">82.3</span>], [<span class="number">180.3</span>, <span class="number">73.6</span>], [<span class="number">167.6</span>, <span class="number">74.1</span>], [<span class="number">188.0</span>, <span class="number">85.9</span>],</span><br><span class="line">                [<span class="number">180.3</span>, <span class="number">73.2</span>], [<span class="number">167.6</span>, <span class="number">76.3</span>], [<span class="number">183.0</span>, <span class="number">65.9</span>], [<span class="number">183.0</span>, <span class="number">90.9</span>], [<span class="number">179.1</span>, <span class="number">89.1</span>],</span><br><span class="line">                [<span class="number">170.2</span>, <span class="number">62.3</span>], [<span class="number">177.8</span>, <span class="number">82.7</span>], [<span class="number">179.1</span>, <span class="number">79.1</span>], [<span class="number">190.5</span>, <span class="number">98.2</span>], [<span class="number">177.8</span>, <span class="number">84.1</span>],</span><br><span class="line">                [<span class="number">180.3</span>, <span class="number">83.2</span>], [<span class="number">180.3</span>, <span class="number">83.2</span>]</span><br><span class="line">            ],</span><br><span class="line">            markArea: &#123;</span><br><span class="line">                silent: <span class="literal">true</span>,</span><br><span class="line">                itemStyle: &#123;</span><br><span class="line">                    normal: &#123;</span><br><span class="line">                        color: <span class="string">'transparent'</span>,</span><br><span class="line">                        borderWidth: <span class="number">1</span>,</span><br><span class="line">                        borderType: <span class="string">'dashed'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                data: [[&#123;</span><br><span class="line">                    name: <span class="string">'男性分布区间'</span>,</span><br><span class="line">                    xAxis: <span class="string">'min'</span>,</span><br><span class="line">                    yAxis: <span class="string">'min'</span></span><br><span class="line">                &#125;, &#123;</span><br><span class="line">                    xAxis: <span class="string">'max'</span>,</span><br><span class="line">                    yAxis: <span class="string">'max'</span></span><br><span class="line">                &#125;]]</span><br><span class="line">            &#125;,</span><br><span class="line">            markPoint : &#123;</span><br><span class="line">                data : [</span><br><span class="line">                    &#123;<span class="attr">type</span> : <span class="string">'max'</span>, <span class="attr">name</span>: <span class="string">'最大值'</span>&#125;,</span><br><span class="line">                    &#123;<span class="attr">type</span> : <span class="string">'min'</span>, <span class="attr">name</span>: <span class="string">'最小值'</span>&#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            markLine : &#123;</span><br><span class="line">                lineStyle: &#123;</span><br><span class="line">                    normal: &#123;</span><br><span class="line">                        type: <span class="string">'solid'</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;,</span><br><span class="line">                data : [</span><br><span class="line">                    &#123;<span class="attr">type</span> : <span class="string">'average'</span>, <span class="attr">name</span>: <span class="string">'平均值'</span>&#125;,</span><br><span class="line">                    &#123; <span class="attr">xAxis</span>: <span class="number">170</span> &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
+<p>图像：</p>
+<div id="echarts1336" style="width: 100%;height: 600px;margin: 0 auto"></div>
+<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('echarts1336'));
+        // 指定图表的配置项和数据
+        var option = {
+    title: {
+        text: '折线图堆叠'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 40,
+        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'邮件营销',
+            type:'line',
+            stack: '总量',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'联盟广告',
+            type:'line',
+            stack: '总量',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'视频广告',
+            type:'line',
+            stack: '总量',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'直接访问',
+            type:'line',
+            stack: '总量',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'搜索引擎',
+            type:'line',
+            stack: '总量',
+            data:[820, 932, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+};
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+</script>
+<p>源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&#123;% echarts <span class="number">600</span> <span class="string">'100%'</span> %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    title: &#123;</span><br><span class="line">        text: <span class="string">'折线图堆叠'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    tooltip: &#123;</span><br><span class="line">        trigger: <span class="string">'axis'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    legend: &#123;</span><br><span class="line">        type: <span class="string">'scroll'</span>,</span><br><span class="line">        orient: <span class="string">'vertical'</span>,</span><br><span class="line">        right: <span class="number">40</span>,</span><br><span class="line">        data:[<span class="string">'邮件营销'</span>,<span class="string">'联盟广告'</span>,<span class="string">'视频广告'</span>,<span class="string">'直接访问'</span>,<span class="string">'搜索引擎'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    grid: &#123;</span><br><span class="line">        left: <span class="string">'3%'</span>,</span><br><span class="line">        right: <span class="string">'4%'</span>,</span><br><span class="line">        bottom: <span class="string">'3%'</span>,</span><br><span class="line">        containLabel: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    toolbox: &#123;</span><br><span class="line">        feature: &#123;</span><br><span class="line">            saveAsImage: &#123;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    xAxis: &#123;</span><br><span class="line">        type: <span class="string">'category'</span>,</span><br><span class="line">        boundaryGap: <span class="literal">false</span>,</span><br><span class="line">        data: [<span class="string">'周一'</span>,<span class="string">'周二'</span>,<span class="string">'周三'</span>,<span class="string">'周四'</span>,<span class="string">'周五'</span>,<span class="string">'周六'</span>,<span class="string">'周日'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    yAxis: &#123;</span><br><span class="line">        type: <span class="string">'value'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    series: [</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'邮件营销'</span>,</span><br><span class="line">            type:<span class="string">'line'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            data:[<span class="number">120</span>, <span class="number">132</span>, <span class="number">101</span>, <span class="number">134</span>, <span class="number">90</span>, <span class="number">230</span>, <span class="number">210</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'联盟广告'</span>,</span><br><span class="line">            type:<span class="string">'line'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            data:[<span class="number">220</span>, <span class="number">182</span>, <span class="number">191</span>, <span class="number">234</span>, <span class="number">290</span>, <span class="number">330</span>, <span class="number">310</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'视频广告'</span>,</span><br><span class="line">            type:<span class="string">'line'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            data:[<span class="number">150</span>, <span class="number">232</span>, <span class="number">201</span>, <span class="number">154</span>, <span class="number">190</span>, <span class="number">330</span>, <span class="number">410</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'直接访问'</span>,</span><br><span class="line">            type:<span class="string">'line'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            data:[<span class="number">320</span>, <span class="number">332</span>, <span class="number">301</span>, <span class="number">334</span>, <span class="number">390</span>, <span class="number">330</span>, <span class="number">320</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            name:<span class="string">'搜索引擎'</span>,</span><br><span class="line">            type:<span class="string">'line'</span>,</span><br><span class="line">            stack: <span class="string">'总量'</span>,</span><br><span class="line">            data:[<span class="number">820</span>, <span class="number">932</span>, <span class="number">901</span>, <span class="number">934</span>, <span class="number">1290</span>, <span class="number">1330</span>, <span class="number">1320</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">&#123;% endecharts %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://kchen.cc/2016/11/05/echarts-in-hexo/" target="_blank" rel="noopener">在 Hexo 中插入 ECharts 动态图表</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/post/comic/explained/dc/injustice-2/issue-65/" rel="next" title="【生肉】【不义联盟2】【65】【布莱尼亚克】">
+                <i class="fa fa-chevron-left"></i> 【生肉】【不义联盟2】【65】【布莱尼亚克】
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/comic/explained/image/unnatural/issue-1/" rel="prev" title="【生肉】【不自然】【01】">
+                【生肉】【不自然】【01】 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="墨问非名">
+            
+              <p class="site-author-name" itemprop="name">墨问非名</p>
+              <p class="site-description motion-element" itemprop="description">墨问非名的Hexo博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">182</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Alicewish" title="GitHub &rarr; https://github.com/Alicewish" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:anywaywillgo@gmail.com" title="E-Mail &rarr; mailto:anywaywillgo@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/anywaywillgo" title="Google &rarr; https://plus.google.com/anywaywillgo" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/AnyWayWillGo" title="Twitter &rarr; https://twitter.com/AnyWayWillGo" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com/alicewish" title="微博 &rarr; http://weibo.com/alicewish" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://douban.com/people/Alicewish" title="豆瓣 &rarr; http://douban.com/people/Alicewish" rel="noopener" target="_blank"><i class="fa fa-fw fa-flag"></i>豆瓣</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/mo-wen-fei-ming" title="知乎 &rarr; http://www.zhihu.com/people/mo-wen-fei-ming" rel="noopener" target="_blank"><i class="fa fa-fw fa-question-circle"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.jianshu.com/u/5d98f0cc5d37" title="简书 &rarr; http://www.jianshu.com/u/5d98f0cc5d37" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://underdream.lofter.com/" title="http://underdream.lofter.com/" rel="noopener" target="_blank">乐乎</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ECharts来画图"><span class="nav-text">使用ECharts来画图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">墨问非名</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">3.4m</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">94:56</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = '昵称,邮箱,个人网址';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'uNChvK50WHVnvV71K0J2ClCm-gzGzoHsz',
+    appKey: 'Q86kXJvREzt2OB3oKTg6pGY0',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=7.0.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=7.0.0"></script>
+
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function(i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function(e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function() {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+<script>if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js?t=1550481519372')
+    .then(function () {console.log('ServiceWorker Register Successfully.')})
+    .catch(function (e) {console.error(e)});
+}
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end --></body>
+</html>
