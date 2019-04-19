@@ -37,10 +37,6 @@
 
 
 
-  <meta name="google-site-verification" content="XrWUkCXuOw4raLKgOPhWj_PeKoz9A-uDf-MRne2UmeE">
-
-
-
 
 
 
@@ -51,7 +47,7 @@
 
   
   
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5">
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -61,19 +57,19 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
 
 
 
@@ -86,8 +82,10 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: true,
     fastclick: false,
     lazyload: false,
@@ -127,7 +125,8 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="https://mowenfeiming.github.io/page/3/">
 
 
@@ -143,14 +142,6 @@
 
 
 
-
-  <script async src="//www.googletagmanager.com/gtag/js?id=UA-119838231-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-119838231-4');
-  </script>
 
 
 
@@ -597,6 +588,12 @@
           <h2 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h2><p>此配置为个人使用，仅供参考。  </p>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/hexo-theme-next-config/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -816,6 +813,12 @@
           <center>文章已加密，回答问题以查看</center><br><img src="https://wx4.sinaimg.cn/large/6a9fdecaly1fs079nwsp2j218g0y61kx.jpg">
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/comic/explained/dc/injustice-2/issue-61/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1020,6 +1023,12 @@
         
           <h2 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h2><p>此配置为个人使用，仅供参考。  </p>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/hexo-site-config/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -1228,6 +1237,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-filter-sequence</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/hexo-add-sequence/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1432,6 +1447,12 @@
         
           <h2 id="插入流程图"><a href="#插入流程图" class="headerlink" title="插入流程图"></a>插入流程图</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: Start|past:&gt;http://www.google.com[blank]</span><br><span class="line">e=&gt;end: End:&gt;http://www.google.com</span><br><span class="line">op1=&gt;operation: My Operation|past</span><br><span class="line">op2=&gt;operation: Stuff|current</span><br><span class="line">sub1=&gt;subroutine: My Subroutine|invalid</span><br><span class="line">cond=&gt;condition: Yes</span><br><span class="line">or No?|approved:&gt;http://www.google.com</span><br><span class="line">c2=&gt;condition: Good idea|rejected</span><br><span class="line">io=&gt;inputoutput: catch something...|request</span><br><span class="line">true</span><br><span class="line">st-&gt;op1(right)-&gt;cond</span><br><span class="line">cond(yes, right)-&gt;c2</span><br><span class="line">cond(no)-&gt;sub1(left)-&gt;op1</span><br><span class="line">c2(yes)-&gt;io-&gt;e</span><br><span class="line">c2(no)-&gt;op2-&gt;e</span><br></pre></td></tr></table></figure>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/embed-flowchart-in-hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -1638,6 +1659,12 @@
           <h2 id="插入时序图"><a href="#插入时序图" class="headerlink" title="插入时序图"></a>插入时序图</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Alice-&gt;Bob: Hello Bob, how are you?</span><br><span class="line">Note right of Bob: Bob thinks</span><br><span class="line">Bob--&gt;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/embed-sequence-in-hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1843,6 +1870,12 @@
           <h1 id="插入数学公式"><a href="#插入数学公式" class="headerlink" title="插入数学公式"></a>插入数学公式</h1><p>在Markdown中插入数学公式的语法是<code>$数学公式$</code>和<code>$$数学公式$$</code>。</p>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/embed-mathjax-in-hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2047,6 +2080,12 @@
         
           <h1 id="Welcome-to-StackEdit"><a href="#Welcome-to-StackEdit" class="headerlink" title="Welcome to StackEdit!"></a>Welcome to StackEdit!</h1><p>Hi! I’m your first Markdown file in <strong>StackEdit</strong>. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. If you have finished with me, you can just create new files by opening the <strong>file explorer</strong> on the left corner of the navigation bar.</p>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/markdown/welcome-to-stackedit/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -2259,6 +2298,12 @@
 <p>danger 提示块标签</p>
 <p>提示块标签，效果就像你看到的这个提示块</p>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/embed-note-tag-in-hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -2483,6 +2528,12 @@
 <p>总目录入口：<a href="https://alicewish.github.io/post/catalogs" target="_blank" rel="noopener">https://alicewish.github.io/post/catalogs</a>  </p>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/note/blog/alicewish/update-20180528/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2689,6 +2740,12 @@
 
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"//player.bilibili.com/player.html?aid=8811534&amp;cid=14535480&amp;page=1"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">border</span>=<span class="string">"0"</span> <span class="attr">frameborder</span>=<span class="string">"no"</span> <span class="attr">framespacing</span>=<span class="string">"0"</span> <span class="attr">allowfullscreen</span>=<span class="string">"true"</span>&gt;</span> <span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/embed-bilibili-video-in-hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -2898,6 +2955,12 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">"//www.youtube.com/embed/pfD6FCZdW4Q"</span> <span class="attr">frameborder</span>=<span class="string">"0"</span> <span class="attr">allowfullscreen</span>=<span class="string">""</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/embed-youtube-video-in-hexo/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3103,6 +3166,12 @@
           <h1 id="欢迎使用-Cmd-Markdown-编辑阅读器"><a href="#欢迎使用-Cmd-Markdown-编辑阅读器" class="headerlink" title="欢迎使用 Cmd Markdown 编辑阅读器"></a>欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
 <p>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/markdown/welcome-to-cmd-markdown/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -3320,6 +3389,12 @@
 <p>示例：<a href="https://alicewish.github.io/post/series/crosswind/" target="_blank" rel="noopener">https://alicewish.github.io/post/series/crosswind/</a>  </p>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/note/blog/alicewish/update-20180414/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3527,6 +3602,12 @@
 </blockquote>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/fanfic/lizi-lake/无病呻吟/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -3732,6 +3813,12 @@
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/hello-world/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -3954,6 +4041,12 @@
 <p><img src="https://wx1.sinaimg.cn/large/6a9fdecaly1frwrhf8nnxj21j816ghdg.jpg" alt="Injustice 2 (2017-) 001-000a 拷贝.jpg">  </p>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/comic/translated/dc/injustice-2/issue-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4158,6 +4251,12 @@
         
           <iframe src="//player.bilibili.com/player.html?aid=21216039&cid=34845080&page=1" width="780" height="480" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
           <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/post/tutorial/alicewish/alicewish-tutorial-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
           <!--/noindex-->
         
@@ -4367,6 +4466,12 @@
 </blockquote>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/fanfic/dorisdc/injustice-sin-of-love/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4572,6 +4677,12 @@
           <iframe src="//www.youtube.com/embed/pfD6FCZdW4Q" frameborder="0" allowfullscreen></iframe>
           <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/post/writing/hexo/front-matter/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -4637,7 +4748,6 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
@@ -4651,7 +4761,7 @@
               <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="墨问非名">
             
               <p class="site-author-name" itemprop="name">墨问非名</p>
-              <p class="site-description motion-element" itemprop="description">墨问非名的Hexo博客</p>
+              <div class="site-description motion-element" itemprop="description">墨问非名的Hexo博客</div>
           </div>
 
           
@@ -4671,7 +4781,11 @@
                 
                 
                 <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
                     
                     
                       
@@ -4804,7 +4918,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -4912,6 +5030,8 @@
                 RSS
               </a>
             </div>
+          
+
           
 
           
@@ -5038,16 +5158,10 @@
       
 
       
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
 
     </div>
   </aside>
+  
 
 
         
@@ -5094,7 +5208,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
 
 
 
@@ -5139,6 +5253,13 @@
     </footer>
 
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
 
     
 
@@ -5180,8 +5301,6 @@
 
 
 
-  
-
 
 
   
@@ -5194,18 +5313,15 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script src="/lib/reading_progress/reading_progress.js"></script>
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.0"></script>
+  <script src="/js/utils.js?v=7.1.0"></script>
 
-  <script src="/js/src/motion.js?v=7.0.0"></script>
+  <script src="/js/motion.js?v=7.1.0"></script>
 
 
 
@@ -5213,7 +5329,7 @@
   
 
 
-  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
 
 
 
@@ -5222,8 +5338,44 @@
   
 
 
-  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+  <script src="/js/next-boot.js?v=7.1.0"></script>
 
+
+  
+  <script src="/js/js.cookie.js?v=7.1.0"></script>
+  <script src="/js/scroll-cookie.js?v=7.1.0"></script>
+
+
+  
+
+  
+  
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+  
+    <script src="/lib/quicklink/dist/quicklink.umd.js"></script>
+    <script>
+      
+        window.addEventListener('load', () => {
+      
+        quicklink({
+          timeout: 3000,
+          priority: true,
+          ignores: [uri => uri.includes('#'),uri => uri == 'https://mowenfeiming.github.io/page/3/',]
+        });
+      
+        });
+      
+    </script>
+  
 
 
   
@@ -5251,7 +5403,8 @@
     avatar: 'mm',
     meta: guest,
     pageSize: '10' || 10,
-    visitor: false
+    visitor: false,
+    lang: '' || 'zh-cn'
   });
 </script>
 
@@ -5645,34 +5798,37 @@
 
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
       processEscapes: true,
       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     },
     TeX: {
       
       equationNumbers: {
-        autoNumber: "AMS"
+        autoNumber: 'AMS'
       }
     }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
   });
 </script>
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
-      for (i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
   });
 </script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-<style>
-.MathJax_Display {
-  overflow: auto hidden;
-}
-</style>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
     
   
@@ -5691,104 +5847,52 @@
   
 
   
-  <script src="/js/src/js.cookie.js?v=7.0.0"></script>
-  <script src="/js/src/scroll-cookie.js?v=7.0.0"></script>
+
+  
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
 
 
   
 
   
-  
-  
-  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
-  <script>
-  
-    bookmark.loadBookmark();
-  
-  </script>
-
-
-  
-  <style>
-    .copy-btn {
-      display: inline-block;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 20px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid #d5d5d5;
-      border-radius: 3px;
-      user-select: none;
-      outline: 0;
-    }
-
-    .highlight-wrap .copy-btn {
-      transition: opacity .3s ease-in-out;
-      opacity: 0;
-      padding: 2px 6px;
-      position: absolute;
-      right: 4px;
-      top: 8px;
-    }
-
-    .highlight-wrap:hover .copy-btn,
-    .highlight-wrap .copy-btn:focus {
-      opacity: 1
-    }
-
-    .highlight-wrap {
-      position: relative;
-    }
-  </style>
-  <script>
-    $('.highlight').each(function(i, e) {
-      var $wrap = $('<div>').addClass('highlight-wrap');
-      $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-        var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-          return $(e).text();
-        }).toArray().join('\n');
-        var ta = document.createElement('textarea');
-        var range = document.createRange(); //For Chrome
-        var sel = window.getSelection(); //For Chrome
-        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-        ta.style.top = yPosition + 'px'; //Prevent page scroll
-        ta.style.position = 'absolute';
-        ta.style.opacity = '0';
-        ta.value = code;
-        ta.textContent = code; //For FireFox
-        ta.contentEditable = true;
-        ta.readOnly = false;
-        document.body.appendChild(ta);
-        range.selectNode(ta);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        ta.setSelectionRange(0, code.length);
-        var result = document.execCommand('copy');
-        
-          if (result) $(this).text('复制成功');
-          else $(this).text('复制失败');
-        
-        ta.blur(); //For iOS
-        $(this).blur();
-      })).on('mouseleave', function(e) {
-        var $b = $(this).find('.copy-btn');
-        setTimeout(function() {
-          $b.text('复制');
-        }, 300);
-      }).append(e);
-    })
-  </script>
-
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1550481519372')
+  navigator.serviceWorker.register('/sw.js?t=1555652961826')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
