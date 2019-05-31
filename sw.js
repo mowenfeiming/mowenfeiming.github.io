@@ -24,11 +24,11 @@ var precacheUrls = [];
 
   precacheUrls.push('/');
 
+  precacheUrls.push('/post/other/batman-v-superman-injustice/');
+
   precacheUrls.push('/post/other/comic-book-lettering-comicraft-way/');
 
   precacheUrls.push('/post/other/tim-seeley-on-weibo/');
-
-  precacheUrls.push('/post/other/batman-v-superman-injustice/');
 
   precacheUrls.push('/post/other/comic-profits-sales/');
 
