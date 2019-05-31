@@ -747,10 +747,58 @@
     
 
     
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg" alt="墨问非名 wechat" style="width: 200px; max-width: 100%;">
+  <div>e.g. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+    
 
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div>听说，你想请我喝杯咖啡？☕️</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="墨问非名 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="墨问非名 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/bitcoin.png" alt="墨问非名 比特币">
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -1914,7 +1962,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1559284659813')
+  navigator.serviceWorker.register('/sw.js?t=1559285198106')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }

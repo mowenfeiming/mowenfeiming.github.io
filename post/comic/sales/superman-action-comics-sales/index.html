@@ -589,11 +589,11 @@
 
       
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-tag-hint@0.2.1/css/hint.min.css"><h2 id="超人动作漫画销量图-横向"><a href="#超人动作漫画销量图-横向" class="headerlink" title="超人动作漫画销量图-横向"></a>超人动作漫画销量图-横向</h2><a id="more"></a>
-<div id="echarts5120" style="width: 100%;height: 1200px;margin: 0 auto"></div>
+<div id="echarts9547" style="width: 100%;height: 1200px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts5120'));
+        var myChart = echarts.init(document.getElementById('echarts9547'));
         // 指定图表的配置项和数据
         var option = {
     title: {
@@ -642,11 +642,11 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
 </script>
-<h2 id="超人动作漫画销量图【2000-2018】-长纵向"><a href="#超人动作漫画销量图【2000-2018】-长纵向" class="headerlink" title="超人动作漫画销量图【2000~2018】-长纵向"></a>超人动作漫画销量图【2000~2018】-长纵向</h2><div id="echarts1142" style="width: 100%;height: 1800px;margin: 0 auto"></div>
+<h2 id="超人动作漫画销量图【2000-2018】-长纵向"><a href="#超人动作漫画销量图【2000-2018】-长纵向" class="headerlink" title="超人动作漫画销量图【2000~2018】-长纵向"></a>超人动作漫画销量图【2000~2018】-长纵向</h2><div id="echarts1098" style="width: 100%;height: 1800px;margin: 0 auto"></div>
 <script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
 <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts1142'));
+        var myChart = echarts.init(document.getElementById('echarts1098'));
         // 指定图表的配置项和数据
         var option = {
     title: {
@@ -715,10 +715,58 @@
     
 
     
+      <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg" alt="墨问非名 wechat" style="width: 200px; max-width: 100%;">
+  <div>e.g. subscribe to my blog by scanning my public wechat account</div>
+</div>
+
+    
 
     
       
     
+    
+      <div>
+        <div id="reward-container">
+  <div>听说，你想请我喝杯咖啡？☕️</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="墨问非名 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="墨问非名 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/bitcoin.png" alt="墨问非名 比特币">
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -1900,7 +1948,7 @@
   
 
 <script>if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?t=1559284659813')
+  navigator.serviceWorker.register('/sw.js?t=1559285198106')
     .then(function () {console.log('ServiceWorker Register Successfully.')})
     .catch(function (e) {console.error(e)});
 }
