@@ -462,6 +462,7 @@ td {
     padding: 8px 0 !important;
     margin-top: initial !important;
   }
+  .post-body h1,
   .post-body h2,
   .post-body h3,
   .post-body h4,
@@ -469,6 +470,8 @@ td {
   .post-body h6 {
     margin: 10px 18px 8px;
   }
+  .post-body .note h1,
+  .post-body .tabs .tab-content .tab-pane h1,
   .post-body .note h2,
   .post-body .tabs .tab-content .tab-pane h2,
   .post-body .note h3,
@@ -492,6 +495,9 @@ td {
     margin: 0 18px;
   }
   .post-body > span.exturl {
+    margin-left: 18px;
+  }
+  .post-body > div.post-button a {
     margin-left: 18px;
   }
   .post-body .note > p,
@@ -1933,7 +1939,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e3ff59;
+  background: #34ffed;
 }
 .feed-link,
 .chat {
